@@ -216,6 +216,8 @@ public class firstActivity extends AppCompatActivity {
                           //if(button2!=-1&&fflagVerde==buttons[button2].getId())
                                 for (j = 0; j < nt; j++) {
                                     if (nm[j] == fflagVerde) {
+                                  //if(buttons[j].getId()==fflagVerde){
+                                      //buttons[j].setColor("green");
                                         abut[j].setBackgroundColor(green);
                                     }
                                 }
