@@ -65,7 +65,7 @@ public abstract class settaggio{
         while(i<nt){
             buttons[i].setId((random.nextInt(100)%9)+1);
             buttons[i].setColor("blue");
-            if(npresi[buttons[i].getId()-1)]==0) {
+            if(npresi[buttons[i].getId()-1]==0) {
                 npresi[buttons[i].getId() - 1] = 1;
                 i++;
             }

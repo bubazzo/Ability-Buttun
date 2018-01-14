@@ -10,7 +10,7 @@ import java.util.*;
 
 public class ButtonApp {
     private Button button;
-    private int id;
+    private int id=-1;
     private HashMap<String,Integer> colors = new HashMap<>();
     private String currentColor;
 
@@ -20,6 +20,7 @@ public class ButtonApp {
     }
     public void setId(int id){
         this.id=id;
+        button.setText(id);
     }
     public int getId(){
         return id;
