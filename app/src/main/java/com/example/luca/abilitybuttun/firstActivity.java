@@ -17,7 +17,6 @@ import java.util.*;
 
 public class firstActivity extends AppCompatActivity {
     int count=0, nSwitch=-1, lv=0, fiVerde=0, pasVerde=0, lvOff=0;
-    Integer nm[]=new Integer[9];
     private ButtonApp[] buttons = new ButtonApp[9];
 
     settaggio ps=new settaggio(buttons){};
@@ -55,18 +54,6 @@ public class firstActivity extends AppCompatActivity {
         if(lvOff>maxNb){
             lvOff=maxNb;
         }
-
-        final Button abut[];
-        abut=new Button[9];
-        abut[0]=(Button) findViewById(R.id.b1);
-        abut[1]=(Button) findViewById(R.id.b2);
-        abut[2]=(Button) findViewById(R.id.b3);
-        abut[3]=(Button) findViewById(R.id.b4);
-        abut[4]=(Button) findViewById(R.id.b5);
-        abut[5]=(Button) findViewById(R.id.b6);
-        abut[6]=(Button) findViewById(R.id.b7);
-        abut[7]=(Button) findViewById(R.id.b8);
-        abut[8]=(Button) findViewById(R.id.b9);
 
         //utilizzo del vettore buttons
         buttons[0]=new ButtonApp(colors,(Button) findViewById(R.id.b1));
@@ -106,12 +93,6 @@ public class firstActivity extends AppCompatActivity {
 
         lvStamp=lv+1;
         tlv.setText("lv: "+ lvStamp.toString());/*stampo il vello*/
-
-        /*inizializzo nm tutto a 0*/
-        for(i=0; i<nt; i++){
-            nm[i]=0;
-        }
-        nm=ps.setNumBut(nt, nm);/*setto i numeri casuali*/
         // setto gli id di buttons
         ps.setIdButtons(nt);
 
@@ -123,11 +104,7 @@ public class firstActivity extends AppCompatActivity {
         a blue;
          */
         for(i=0; i<nt; i++){
-            abut[i].setText(nm[i].toString());
-            abut[i].setBackgroundColor(blue);
-                if(nm[i]>lvOff){
-                    abut[i].setVisibility(View.INVISIBLE);
-                }
+            buttons[i].setColor("blue");
                 if(buttons[i].getId()>lvOff){
                     buttons[i].setVisible(false);
                 }
@@ -154,9 +131,6 @@ public class firstActivity extends AppCompatActivity {
         }
         if(nVerde==1){
             for(z=0; z<nt; z++) {
-                if (nm[z] == nVerde) {
-                    abut[z].setBackgroundColor(green);
-                }
                 if (buttons[z].getId() == nVerde) {
                     buttons[z].setColor("green");
                 }
@@ -179,16 +153,14 @@ public class firstActivity extends AppCompatActivity {
 
         for(i=0; i<nt; i++){
             final int k=i;
-            abut[i].setOnClickListener(new View.OnClickListener(){
-           //buttons[i].getButton().setonClickListener(new View.OnClickListener()){
+          //  abut[i].setOnClickListener(new View.OnClickListener(){
+           buttons[i].getButton().setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v) {
                     int ciclo, button1=-1, button2=-1;
                     int j=0;
-                    abut[k].setVisibility(View.INVISIBLE);
                     buttons[k].setVisible(false);
                     /*se ho premuto giusto*/
-                    if(count==nm[k]-1){
-                //    if(count==buttons[k].getId()-1){
+                    if(count==buttons[k].getId()-1){
                         count++;
                         //da continuare perchè vogliamo fare che id e indice non corrispondono
                         //seleziono i bottoni che mi servono, successivo ecc.
@@ -202,54 +174,42 @@ public class firstActivity extends AppCompatActivity {
                             }
                         }
                         //scrivo così perchè i valori nei flag partono da 1
-                        if(flagRosso==nm[k]+1){  /*controllo rosso*/
-                       //if(button1!=-1&&buttons[button1].getId()==flagRosso){
+                        if(button1!=-1&&buttons[button1].getId()==flagRosso){ /*controllo rosso*/
                             count++;
                             //parte per vedere qual è il prossimo bottone e quello dopo due
-                            if (fflagVerde == nm[k]){/*se il rosso è subito dopo il verde*/
-                          //if(fflagVerde==buttons[k].getId()){
+                            if(fflagVerde==buttons[k].getId()){/*se il rosso è subito dopo il verde*/
                                 if(fiVerde==0){
                                     count--;
                                 }
                             }
-                            if(fflagVerde==nm[k]+2){
-                          //if(button2!=-1&&fflagVerde==buttons[button2].getId())
+                            if(button2!=-1&&fflagVerde==buttons[button2].getId()){
                                 for (j = 0; j < nt; j++) {
-                                    if (nm[j] == fflagVerde) {
-                                  //if(buttons[j].getId()==fflagVerde){
-                                      //buttons[j].setColor("green");
-                                        abut[j].setBackgroundColor(green);
+                                    if(buttons[j].getId()==fflagVerde){
+                                        buttons[j].setColor("green");
                                     }
                                 }
                             }
                             for(j=0; j<nt; j++){
-                                if(nm[j]==flagRosso){
-                              //if(buttons[j].getId()==flagRosso)
-                                  //buttons[j].setColor("red");
-                                    abut[j].setBackgroundColor(red);
+                                if(buttons[j].getId()==flagRosso){
+                                    buttons[j].setColor("red");
                                 }
                             }
 
                         }
 
 
-                        if (fflagVerde == nm[k] + 1) {/*controllo verde*/
-                      //if(button1!=-1&&fflagVerde==buttons[button1].getId()){
+                        if(button1!=-1&&fflagVerde==buttons[button1].getId()){/*controllo verde*/
                             for (j = 0; j < nt; j++) {
-                                if (nm[j] == fflagVerde) {
-                              //if(buttons[j].getId()==fflagVerde){
-                                  //buttons[j].setColor("green");
-                                    abut[j].setBackgroundColor(green);
+                                if(buttons[j].getId()==fflagVerde){
+                                    buttons[j].setColor("green");
                                 }
                             }
                         }
                         if(fiVerde==0) {
-                            if (fflagVerde == nm[k]) {
-                          //if(fflagVerde==buttons[k].getId()){
+                            if(fflagVerde==buttons[k].getId()){
                                 if (fiVerde == 0) {
                                     count--;
-                                  //buttons[k].getButton().setVisibility(View.VISIBLE);
-                                    abut[k].setVisibility(View.VISIBLE);
+                                    buttons[k].getButton().setVisibility(View.VISIBLE);
                                 }
                                 fiVerde = 1;
 
@@ -259,24 +219,16 @@ public class firstActivity extends AppCompatActivity {
                             fiVerde=0;
                         }
                         /*controllo switch*/
-                        if(nm[k]==nSwitch){
-                      //if(buttons[k].getId()==nSwitch){
-                            nm=ps.setNumBut(nt, nm); /*risetto i bottoni*/
-                            //ps.setIdButtons(nt);
+                        if(buttons[k].getId()==nSwitch){
+                            ps.setIdButtons(nt);/*risetto i bottoni*/
                             for(j=0; j<nt; j++){
-                                //non c'è di bisogno perchè quando setto l'id ristampo
-                                abut[j].setText(nm[j].toString());/*faccio ristampare i bottoni*/
 
-                                if(nm[j]>lvOff || nm[j]<=count){/*risetto i bottoni alti invisibili*/
-                              //if(buttons[j].getId()>lvOff || buttons[j].getId()<=count){
-                                  //buttons[j].setVisible(false);
-                                    abut[j].setVisibility(View.INVISIBLE);
+                                if(buttons[j].getId()>lvOff || buttons[j].getId()<=count){/*risetto i bottoni alti invisibili*/
+                                    buttons[j].setVisible(false);
                                 }
                                 else{
-                                    abut[j].setVisibility(View.VISIBLE);/*risetto i bottoni giusti visibili*/
-                                  //buttons[j].setVisible(true);
-                                    abut[j].setBackgroundColor(blue);/*pulisco i bottoni eventualmente colorati di rosso*/
-                                  //buttons[j].setColor("blue");
+                                    buttons[j].setVisible(true);/*risetto i bottoni giusti visibili*/
+                                    buttons[j].setColor("blue");/*pulisco i bottoni eventualmente colorati di rosso*/
                                 }
 
                             }
