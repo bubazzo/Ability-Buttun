@@ -20,7 +20,7 @@ public class ButtonApp {
     }
     public void setId(int id){
         this.id=id;
-        button.setText(id);
+        button.setText(Integer.toString(id));
     }
     public int getId(){
         return id;
