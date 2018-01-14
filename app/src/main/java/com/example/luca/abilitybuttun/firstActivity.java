@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Random;
-
+import java.util.*;
 /**
  * Created by Luca on 18/11/2017.
  */
@@ -18,8 +18,10 @@ import java.util.Random;
 public class firstActivity extends AppCompatActivity {
     int count=0, nSwitch=-1, lv=0, fiVerde=0, pasVerde=0, lvOff=0;
     Integer nm[]=new Integer[9];
+    private ButtonApp[] buttons = new ButtonApp[9];
 
-    settaggio ps=new settaggio(){};
+    settaggio ps=new settaggio(buttons){};
+    private HashMap<String,Integer> colors=new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -36,6 +38,9 @@ public class firstActivity extends AppCompatActivity {
         final int blue = Color.parseColor("#3F51B5");
         final int red= Color.parseColor("#ae0c00");
         final int green=Color.parseColor("#00ff00");
+        colors.put("blue",blue);
+        colors.put("red",red);
+        colors.put("green",green);
 
 
 
@@ -62,6 +67,18 @@ public class firstActivity extends AppCompatActivity {
         abut[6]=(Button) findViewById(R.id.b7);
         abut[7]=(Button) findViewById(R.id.b8);
         abut[8]=(Button) findViewById(R.id.b9);
+
+        //utilizzo del vettore buttons
+        buttons[0]=new ButtonApp(colors,(Button) findViewById(R.id.b1));
+        buttons[1]=new ButtonApp(colors,(Button) findViewById(R.id.b2));
+        buttons[2]=new ButtonApp(colors,(Button) findViewById(R.id.b3));
+        buttons[3]=new ButtonApp(colors,(Button) findViewById(R.id.b4));
+        buttons[4]=new ButtonApp(colors,(Button) findViewById(R.id.b5));
+        buttons[5]=new ButtonApp(colors,(Button) findViewById(R.id.b6));
+        buttons[6]=new ButtonApp(colors,(Button) findViewById(R.id.b7));
+        buttons[7]=new ButtonApp(colors,(Button) findViewById(R.id.b8));
+        buttons[8]=new ButtonApp(colors,(Button) findViewById(R.id.b9));
+
 
         TextView tlv= (TextView) findViewById(R.id.tlv);
         final TextView tTimer=(TextView) findViewById(R.id.tTimer);
@@ -95,14 +112,24 @@ public class firstActivity extends AppCompatActivity {
             nm[i]=0;
         }
         nm=ps.setNumBut(nt, nm);/*setto i numeri casuali*/
+        // setto gli id di buttons
+        ps.setIdButtons(nt);
 
 
         /*scrivo i numeri casuali nei bottoni e il numero di bottoni*/
+        /*
+        non c'è di bisogno con la nuova classe perchè ogni volta che setto l'id cambio anche il
+        testo, aggiungo anche che quando faccio l'estrazione in settaggio vado a mettere il colore
+        a blue;
+         */
         for(i=0; i<nt; i++){
             abut[i].setText(nm[i].toString());
             abut[i].setBackgroundColor(blue);
                 if(nm[i]>lvOff){
                     abut[i].setVisibility(View.INVISIBLE);
+                }
+                if(buttons[i].getId()>lvOff){
+                    buttons[i].setVisible(false);
                 }
         }
         /*setto il valore max raggiungibile*/
@@ -130,6 +157,9 @@ public class firstActivity extends AppCompatActivity {
                 if (nm[z] == nVerde) {
                     abut[z].setBackgroundColor(green);
                 }
+                if (buttons[z].getId() == nVerde) {
+                    buttons[z].setColor("green");
+                }
             }
         }
         if(lv>=19){/*difficoltà livello 20, switch numeri*/
@@ -149,16 +179,20 @@ public class firstActivity extends AppCompatActivity {
 
         for(i=0; i<nt; i++){
             final int k=i;
-            abut[i].setOnClickListener(new View.OnClickListener() {
-                @Override
+            abut[i].setOnClickListener(new View.OnClickListener(){
+           //buttons[i].getButton().setonClickListener(new View.OnClickListener()){
                 public void onClick(View v) {
                     int j=0;
                     abut[k].setVisibility(View.INVISIBLE);
+                    buttons[k].setVisible(false);
                     /*se ho premuto giusto*/
                     if(count==nm[k]-1){
+                //    if(count==buttons[k].getId()-1){
                         count++;
+                        //da continuare perchè vogliamo fare che id e indice non corrispondono
                         if(flagRosso==nm[k]+1){  /*controllo rosso*/
                             count++;
+                            //parte per vedere qual è il prossimo bottone e quello dopo due
                             if (fflagVerde == nm[k]){/*se il rosso è subito dopo il verde*/
                                 if(fiVerde==0){
                                     count--;
