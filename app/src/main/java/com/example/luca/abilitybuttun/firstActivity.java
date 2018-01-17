@@ -16,7 +16,10 @@ import java.util.*;
  */
 
 public class firstActivity extends AppCompatActivity {
-    int count=0, nSwitch=-1, lv=0, fiVerde=0, pasVerde=0, lvOff=0;
+    private int count=0, nSwitch=-1, lv=0, fiVerde=0, lvOff=0, nt=9, max=0,
+            nRosso=-1, nVerde=-1, flagVerde=-1, maxNb=6;
+    private int lvmax=99;  /*1 in meno del livello segnato => i livello internamente partono da 0
+        ma vengono visualizzati a partire da 1*/
     private ButtonApp[] buttons = new ButtonApp[9];
 
     settaggio ps=new settaggio(buttons){};
@@ -28,12 +31,9 @@ public class firstActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_activity);
         count =0;
-        int i=0, lv=0, maxNb=6, nRosso=-1, nVerde=-1, flagVerde=-1, z=0;
-        long tInt=10, tRet=0, tBase=5000;
+        int i=0, z=0;
+        long tInt=10, tBase=5000;
         Integer lvStamp=0;
-        final int nt=9;
-        final int lvmax=99; /*1 in meno del livello segnato => i livello internamente partono da 0
-        ma vengono visualizzati a partire da 1*/
         final int blue = Color.parseColor("#3F51B5");
         final int red= Color.parseColor("#ae0c00");
         final int green=Color.parseColor("#00ff00");
@@ -48,7 +48,6 @@ public class firstActivity extends AppCompatActivity {
 
         Intent intento=getIntent();
         lv=intento.getIntExtra("livello", -1); /*parte da 0*/
-        final int mlv=lv;/*variabile final per mettere dentro a funzioni*/
         /*per avere meno di 9 bottoni*/
         lvOff=lv+3;
         if(lvOff>maxNb){
@@ -85,7 +84,7 @@ public class firstActivity extends AppCompatActivity {
 
             public void onFinish() {/*ho perso per fine tempo*/
                 iv.putExtra("esito", 0);
-                iv.putExtra("livello", mlv+1);
+                iv.putExtra("livello", lv+1);
                 startActivity(iv);
             }
         };
@@ -111,7 +110,7 @@ public class firstActivity extends AppCompatActivity {
         }
         /*setto il valore max raggiungibile*/
 
-        final int max=lvOff;
+        max=lvOff;
 
         /*difficoltà 5 livello*/
         if(lv>=4 && lv<19){/*perchè i livelli partono segnati da 0*/
@@ -143,12 +142,6 @@ public class firstActivity extends AppCompatActivity {
             }
         }
 
-        /*faccio partire il timer*/
-
-        final int flagRosso=nRosso;
-        final int fflagVerde=nVerde;
-        final long ftRet=tRet;
-
         final Intent ilv=new Intent(firstActivity.this, InterLvActivity.class);
 
         for(i=0; i<nt; i++){
@@ -174,23 +167,23 @@ public class firstActivity extends AppCompatActivity {
                             }
                         }
                         //scrivo così perchè i valori nei flag partono da 1
-                        if(button1!=-1&&buttons[button1].getId()==flagRosso){ /*controllo rosso*/
+                        if(button1!=-1&&buttons[button1].getId()==nRosso){ /*controllo rosso*/
                             count++;
                             //parte per vedere qual è il prossimo bottone e quello dopo due
-                            if(fflagVerde==buttons[k].getId()){/*se il rosso è subito dopo il verde*/
+                            if(nVerde==buttons[k].getId()){/*se il rosso è subito dopo il verde*/
                                 if(fiVerde==0){
                                     count--;
                                 }
                             }
-                            if(button2!=-1&&fflagVerde==buttons[button2].getId()){
+                            if(button2!=-1&&nVerde==buttons[button2].getId()){
                                 for (j = 0; j < nt; j++) {
-                                    if(buttons[j].getId()==fflagVerde){
+                                    if(buttons[j].getId()==nVerde){
                                         buttons[j].setColor("green");
                                     }
                                 }
                             }
                             for(j=0; j<nt; j++){
-                                if(buttons[j].getId()==flagRosso){
+                                if(buttons[j].getId()==nRosso){
                                     buttons[j].setColor("red");
                                 }
                             }
@@ -198,15 +191,15 @@ public class firstActivity extends AppCompatActivity {
                         }
 
 
-                        if(button1!=-1&&fflagVerde==buttons[button1].getId()){/*controllo verde*/
+                        if(button1!=-1&&nVerde==buttons[button1].getId()){/*controllo verde*/
                             for (j = 0; j < nt; j++) {
-                                if(buttons[j].getId()==fflagVerde){
+                                if(buttons[j].getId()==nVerde){
                                     buttons[j].setColor("green");
                                 }
                             }
                         }
                         if(fiVerde==0) {
-                            if(fflagVerde==buttons[k].getId()){
+                            if(nVerde==buttons[k].getId()){
                                 if (fiVerde == 0) {
                                     count--;
                                     buttons[k].getButton().setVisibility(View.VISIBLE);
@@ -236,7 +229,7 @@ public class firstActivity extends AppCompatActivity {
 
 
                         if(count==max || count==nt){/*se ho finito il livello*/
-                            if(mlv==lvmax){/*se era l'ultimo livello e ho vinto*/
+                            if(lv==lvmax){/*se era l'ultimo livello e ho vinto*/
                                 timer.cancel();
                                 iv.putExtra("esito", 1);
                                 startActivity(iv);
@@ -244,7 +237,7 @@ public class firstActivity extends AppCompatActivity {
                             }
                             else{/*se devo continuare con altri livelli*/
                                 timer.cancel();
-                                ilv.putExtra("livello", mlv+1);
+                                ilv.putExtra("livello", lv+1);
                                 startActivity(ilv);
 
                             }
@@ -255,7 +248,7 @@ public class firstActivity extends AppCompatActivity {
                     else{
                         timer.cancel();
                         iv.putExtra("esito", 0);
-                        iv.putExtra("livello", mlv+1);
+                        iv.putExtra("livello", lv+1);
                         startActivity(iv);
                     }
                 }
