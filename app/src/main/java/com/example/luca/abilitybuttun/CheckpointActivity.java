@@ -1,6 +1,8 @@
 package com.example.luca.abilitybuttun;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.widget.Button;
 /*per il bottone indietro*/
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.TextView;
 
 /**
  * Created by Luca on 25/11/2017.
@@ -17,6 +20,7 @@ import android.content.DialogInterface;
 public class CheckpointActivity extends AppCompatActivity {
     Button arrBut[];
     int i=0, ncp=6;
+    Integer lvRaggiunto=0;
     Intent intento;
     int blue = Color.parseColor("#3F51B5");
 
@@ -31,7 +35,16 @@ public class CheckpointActivity extends AppCompatActivity {
         arrBut[3]=findViewById(R.id.cpButton4);
         arrBut[4]=findViewById(R.id.cpButton5);
         arrBut[5]=findViewById(R.id.cpButton6);
+        TextView testoLv=(TextView) findViewById(R.id.textLivello);
 
+        String preference_name = "Pref1";
+
+        SharedPreferences prefs = getSharedPreferences(preference_name, Context.MODE_PRIVATE);
+
+        /*gestione livello*/
+        lvRaggiunto=prefs.getInt("livello", 0);
+        testoLv.setText("Record: lv"+lvRaggiunto.toString());
+        /*fine gestione livello*/
 
         for(i=0; i<ncp; i++){
             arrBut[i].setBackgroundColor(blue);
@@ -94,12 +107,13 @@ public class CheckpointActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setMessage("Do you want to Exit?");
+        builder.setMessage("Tornare al menù principale?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //if user pressed "yes", then he is allowed to exit from application
-                finish();
+                Intent i=new Intent(CheckpointActivity.this, MainActivity.class);
+                startActivity(i);
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

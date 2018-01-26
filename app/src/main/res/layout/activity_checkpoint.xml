@@ -92,4 +92,12 @@
         app:layout_constraintStart_toEndOf="@+id/cpButton5"
         app:layout_constraintTop_toBottomOf="@+id/cpButton4"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textLivello"
+        android:layout_width="81dp"
+        android:layout_height="45dp"
+        android:text="TextView"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="2dp" />
 </android.support.constraint.ConstraintLayout>

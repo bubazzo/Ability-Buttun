@@ -31,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setMessage("Do you want to Exit?");
+        builder.setMessage("Tornare al menù principale?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //if user pressed "yes", then he is allowed to exit from application
-                finish();
+                Intent i=new Intent(MainActivity.this, MainActivity.class);
+                startActivity(i);
             }
         });
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
