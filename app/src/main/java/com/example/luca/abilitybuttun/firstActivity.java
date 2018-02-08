@@ -35,7 +35,7 @@ public class firstActivity extends AppCompatActivity {
         setContentView(R.layout.first_activity);
         count =0;
         int i=0, z=0;
-        long tInt=10, tBase=5000;
+        long tInt=10, tBase=3000;
         Integer lvStamp=0;
         final int blue = Color.parseColor("#3F51B5");
         final int red= Color.parseColor("#ae0c00");
@@ -52,10 +52,12 @@ public class firstActivity extends AppCompatActivity {
         Intent intento=getIntent();
         lv=intento.getIntExtra("livello", -1); /*parte da 0*/
         /*per avere meno di 9 bottoni*/
-        lvOff=lv+3;
+        /*lvOff=lv+3;
         if(lvOff>maxNb){
             lvOff=maxNb;
-        }
+        }*/
+
+        lvOff=maxNb;
 
         //utilizzo del vettore buttons
         buttons[0]=new ButtonApp(colors,(Button) findViewById(R.id.b1));
@@ -75,8 +77,8 @@ public class firstActivity extends AppCompatActivity {
         final Intent iv=new Intent(firstActivity.this, VictoryActivity.class);
 
 
-        if(lv>=14){/*setto il tempo*/
-            tBase=3000;
+        if(lv>=24){/*setto il tempo*/
+            tBase=2500;
         }
         /*creazione timer*/
         final CountDownTimer timer=new CountDownTimer(tBase, tInt) {
@@ -116,15 +118,21 @@ public class firstActivity extends AppCompatActivity {
         max=lvOff;
 
         /*difficoltà 5 livello*/
-        if(lv>=4 && lv<19){/*perchè i livelli partono segnati da 0*/
+        if(lv>=4 && lv<14){/*perchè i livelli partono segnati da 0*/
             nRosso=ps.setnRosso(max);
 
         }
-        if(lv>=24){
+        if(lv>=19 && lv<34){
+            nRosso=ps.setnRosso(max);
+        }
+        if(lv>=39){
             nRosso=ps.setnRosso(max);
         }
         /*difficoltà livello 10, verde*/
-        if(lv>=9 && lv<19){
+        if(lv>=9 && lv<14){
+            flagVerde=random.nextInt(100)%2;
+        }
+        if(lv>=29 && lv<34){
             flagVerde=random.nextInt(100)%2;
         }
 
@@ -138,10 +146,16 @@ public class firstActivity extends AppCompatActivity {
                 }
             }
         }
-        if(lv>=19){/*difficoltà livello 20, switch numeri*/
-            nSwitch=ps.setnSwitch(max);
-            while(nSwitch==nRosso || nSwitch==nRosso-1){
-                nSwitch=ps.setnSwitch(max);
+        if(lv>=14 && lv<24) {/*difficoltà livello 15, switch numeri*/
+            nSwitch = ps.setnSwitch(max);
+            while (nSwitch == nRosso || nSwitch == nRosso - 1) {
+                nSwitch = ps.setnSwitch(max);
+            }
+        }
+        if(lv>=34){
+            nSwitch = ps.setnSwitch(max);
+            while (nSwitch == nRosso || nSwitch == nRosso - 1) {
+                nSwitch = ps.setnSwitch(max);
             }
         }
 

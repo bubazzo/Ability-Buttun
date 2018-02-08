@@ -28,7 +28,7 @@ public class RegoleActivity extends AppCompatActivity {
 
         switch(lvSucc){
             case 1:
-                button.setText("Premi i numeri in ordine crescente\n\nTempo 5s");
+                button.setText("Premi i numeri in ordine crescente\n\nTempo 3s");
                 break;
             case 5:
                 button.setText("Don't click the red button");
@@ -37,12 +37,21 @@ public class RegoleActivity extends AppCompatActivity {
                 button.setText("Clicca 2 volte il bottone verde");
                 break;
             case 15:
-                button.setText("Tempo 3s");
-                break;
-            case 20:
                 button.setText("Scambio posizione");
                 break;
+            case 20:
+                button.setText("Scambio posizione + rosso");
+                break;
             case 25:
+                button.setText("Tempo 2,5 secondi\nNon premere il rosso");
+                break;
+            case 30:
+                button.setText("Clicca 2 volte il bottone verde");
+                break;
+            case 35:
+                button.setText("Scambio posizione");
+                break;
+            case 40:
                 button.setText("Scambio posizione + rosso");
                 break;
             default:

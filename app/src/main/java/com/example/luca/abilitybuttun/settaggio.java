@@ -35,7 +35,8 @@ public abstract class settaggio{
     }
 
     public int setnVerde(int max){
-        nVerde=random.nextInt(100)%max;
+        nVerde=random.nextInt(100)%max-1;/*decremento max perchè dopo incremento*/
+        nVerde++;/*per non far uscire 0*/
         while(nVerde==nRosso){
             nVerde=random.nextInt(100)%(max+1);
         }
@@ -44,12 +45,14 @@ public abstract class settaggio{
 
     public int setnRosso(int max){
         while(nRosso<2 || nRosso>5){
-            nRosso=random.nextInt(100)%max;
+            nRosso=random.nextInt(100)%max-1;/*decremento max perchè dopo incremento*/
+            nRosso++;/*per non far uscire 0*/
         }
         return nRosso;
     }
     public int setnSwitch(int max){
-        nSwitch=random.nextInt(100)%(max-1);
+        nSwitch=random.nextInt(100)%(max-2);/*decremento max perchè dopo incremento*/
+        nSwitch++;/*per non far venire 0*/
         return nSwitch;
     }
 
