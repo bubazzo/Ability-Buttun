@@ -2,48 +2,58 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:id="@+id/textView"
+        android:layout_marginTop="30dp"
+        android:layout_width="250dp"
+        android:layout_height="38dp"
+        android:background="@drawable/choose_level"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.036" />
 
     <Button
         android:id="@+id/cpButton1"
         android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="80dp"
-        android:text="cpButton1"
-        style="@style/TemaStart"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/tapp_contorno"
         app:layout_constraintEnd_toStartOf="@+id/cpButton2"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/cpButton2"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginTop="80dp"
-        android:text="cpButton2"
-        style="@style/TemaStart"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/tapp_contorno"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/cpButton3"
         android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="76dp"
-        android:layout_marginEnd="5dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginStart="70dp"
         android:layout_marginTop="60dp"
-        android:text="cpButton3"
-        style="@style/TemaStart"
+        android:background="@drawable/tapp_contorno"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cpButton4"
-        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cpButton1"
         app:layout_constraintVertical_bias="0.0" />
@@ -51,12 +61,11 @@
     <Button
         android:id="@+id/cpButton4"
         android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="76dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="75dp"
         android:layout_marginEnd="70dp"
         android:layout_marginTop="60dp"
-        android:text="cpButton4"
-        style="@style/TemaStart"
+        android:background="@drawable/tapp_contorno"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cpButton2"
@@ -64,32 +73,31 @@
 
     <Button
         android:id="@+id/cpButton5"
-        style="@style/TemaStart"
         android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="140dp"
-        android:layout_marginStart="80dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="70dp"
         android:layout_marginTop="60dp"
-        android:text="cpButton5"
+        android:background="@drawable/tapp_contorno"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cpButton6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cpButton3"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/cpButton6"
-        style="@style/TemaStart"
         android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="140dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="75dp"
+        android:layout_marginEnd="70dp"
         android:layout_marginTop="60dp"
-        android:text="cpButton6"
+        android:background="@drawable/tapp_contorno"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.346"
-        app:layout_constraintStart_toEndOf="@+id/cpButton5"
         app:layout_constraintTop_toBottomOf="@+id/cpButton4"
         app:layout_constraintVertical_bias="0.0" />
+
 </android.support.constraint.ConstraintLayout>

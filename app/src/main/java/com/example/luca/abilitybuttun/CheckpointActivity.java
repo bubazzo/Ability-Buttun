@@ -31,7 +31,8 @@ public class CheckpointActivity extends AppCompatActivity {
 
 
         for(i=0; i<ncp; i++){
-            arrBut[i].setBackgroundColor(blue);
+            //arrBut[i].setBackgroundColor(blue);
+            arrBut[i].setTextColor(Color.parseColor("#4DF2FF"));
             switch (i){
                 case 0:
                     arrBut[i].setText("Lv1");
