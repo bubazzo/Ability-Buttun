@@ -49,4 +49,7 @@ public class ButtonApp {
         else
             button.setVisibility(View.INVISIBLE);
     }
+    public void setBackground(){
+
+    }
 }
