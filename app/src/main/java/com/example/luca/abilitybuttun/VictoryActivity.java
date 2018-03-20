@@ -95,7 +95,8 @@ public class VictoryActivity extends AppCompatActivity {
     }
     /*fine sezione bottone indietro*/
     @Override
-    public void  onPause(){
+    public void  onPause() {
+        super.onPause();
         finish();
     }
 }

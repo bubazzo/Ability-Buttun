@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     }
     /*fine sezione bottone indietro*/
     @Override
-    public void  onPause(){
+    public void  onPause() {
         finish();
     }
 }

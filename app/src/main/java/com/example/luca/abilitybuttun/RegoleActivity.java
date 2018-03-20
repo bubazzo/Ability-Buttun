@@ -95,6 +95,7 @@ public class RegoleActivity extends AppCompatActivity {
     /*fine sezione bottone indietro*/
     @Override
     public void  onPause(){
+        super.onPause();
         finish();
     }
 }
