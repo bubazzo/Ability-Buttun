@@ -127,4 +127,8 @@ public class CheckpointActivity extends AppCompatActivity {
         alert.show();
     }
     /*fine sezione bottone indietro*/
+    @Override
+    public void  onPause(){
+        finish();
+    }
 }

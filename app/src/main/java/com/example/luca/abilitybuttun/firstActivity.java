@@ -281,5 +281,9 @@ public class firstActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
     /*fine sezione bottone indietro*/
+    @Override
+    public void  onPause(){
+        finish();
+    }
 }
 

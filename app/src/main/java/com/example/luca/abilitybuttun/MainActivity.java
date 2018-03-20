@@ -51,5 +51,8 @@ public class MainActivity extends AppCompatActivity {
         alert.show();
     }
     /*fine sezione bottone indietro*/
-
+    @Override
+    public void  onPause(){
+        finish();
+    }
 }
