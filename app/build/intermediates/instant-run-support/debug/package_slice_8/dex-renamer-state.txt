@@ -1,0 +1,4 @@
+#Sat Mar 03 17:19:45 CET 2018
+base.0=C\:\\Users\\STEFANO\\Desktop\\Wrapper\\Illustrator\\button_logo\\app\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\9
+path.0=classes.dex
+renamed.0=classes.dex

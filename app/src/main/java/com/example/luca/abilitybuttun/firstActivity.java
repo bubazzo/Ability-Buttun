@@ -8,18 +8,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+/*per il bottone indietro*/
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 import java.util.Random;
-
+import java.util.*;
 /**
  * Created by Luca on 18/11/2017.
  */
 
 public class firstActivity extends AppCompatActivity {
-    int count=0, nSwitch=-1, lv=0, fiVerde=0, pasVerde=0, lvOff=0;
-    Integer nm[]=new Integer[9];
+    private int count=0, nSwitch=-1, lv=0, fiVerde=0, lvOff=0, nt=9, max=0,
+            nRosso=-1, nVerde=-1, flagVerde=-1, maxNb=6;
+    private int lvmax=99;  /*1 in meno del livello segnato => i livello internamente partono da 0
+        ma vengono visualizzati a partire da 1*/
+    private ButtonApp[] buttons = new ButtonApp[9];
 
-    settaggio ps=new settaggio(){};
+    settaggio ps=new settaggio(buttons){};
+    private HashMap<String,Integer> colors=new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -27,15 +34,15 @@ public class firstActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_activity);
         count =0;
-        int i=0, lv=0, maxNb=6, nRosso=-1, nVerde=-1, flagVerde=-1, z=0;
-        long tInt=10, tRet=0, tBase=5000;
+        int i=0, z=0;
+        long tInt=10, tBase=3000;
         Integer lvStamp=0;
-        final int nt=9;
-        final int lvmax=99; /*1 in meno del livello segnato => i livello internamente partono da 0
-        ma vengono visualizzati a partire da 1*/
         final int blue = Color.parseColor("#3F51B5");
         final int red= Color.parseColor("#ae0c00");
         final int green=Color.parseColor("#00ff00");
+        colors.put("blue",blue);
+        colors.put("red",red);
+        colors.put("green",green);
 
 
 
@@ -44,24 +51,25 @@ public class firstActivity extends AppCompatActivity {
 
         Intent intento=getIntent();
         lv=intento.getIntExtra("livello", -1); /*parte da 0*/
-        final int mlv=lv;/*variabile final per mettere dentro a funzioni*/
         /*per avere meno di 9 bottoni*/
-        lvOff=lv+3;
+        /*lvOff=lv+3;
         if(lvOff>maxNb){
             lvOff=maxNb;
-        }
+        }*/
 
-        final Button abut[];
-        abut=new Button[9];
-        abut[0]=(Button) findViewById(R.id.b1);
-        abut[1]=(Button) findViewById(R.id.b2);
-        abut[2]=(Button) findViewById(R.id.b3);
-        abut[3]=(Button) findViewById(R.id.b4);
-        abut[4]=(Button) findViewById(R.id.b5);
-        abut[5]=(Button) findViewById(R.id.b6);
-        abut[6]=(Button) findViewById(R.id.b7);
-        abut[7]=(Button) findViewById(R.id.b8);
-        abut[8]=(Button) findViewById(R.id.b9);
+        lvOff=maxNb;
+
+        //utilizzo del vettore buttons
+        buttons[0]=new ButtonApp(colors,(Button) findViewById(R.id.b1));
+        buttons[1]=new ButtonApp(colors,(Button) findViewById(R.id.b2));
+        buttons[2]=new ButtonApp(colors,(Button) findViewById(R.id.b3));
+        buttons[3]=new ButtonApp(colors,(Button) findViewById(R.id.b4));
+        buttons[4]=new ButtonApp(colors,(Button) findViewById(R.id.b5));
+        buttons[5]=new ButtonApp(colors,(Button) findViewById(R.id.b6));
+        buttons[6]=new ButtonApp(colors,(Button) findViewById(R.id.b7));
+        buttons[7]=new ButtonApp(colors,(Button) findViewById(R.id.b8));
+        buttons[8]=new ButtonApp(colors,(Button) findViewById(R.id.b9));
+
 
         TextView tlv= (TextView) findViewById(R.id.tlv);
         final TextView tTimer=(TextView) findViewById(R.id.tTimer);
@@ -69,8 +77,8 @@ public class firstActivity extends AppCompatActivity {
         final Intent iv=new Intent(firstActivity.this, VictoryActivity.class);
 
 
-        if(lv>=14){/*setto il tempo*/
-            tBase=3000;
+        if(lv>=24){/*setto il tempo*/
+            tBase=2500;
         }
         /*creazione timer*/
         final CountDownTimer timer=new CountDownTimer(tBase, tInt) {
@@ -81,7 +89,7 @@ public class firstActivity extends AppCompatActivity {
 
             public void onFinish() {/*ho perso per fine tempo*/
                 iv.putExtra("esito", 0);
-                iv.putExtra("livello", mlv+1);
+                iv.putExtra("livello", lv+1);
                 startActivity(iv);
             }
         };
@@ -89,36 +97,42 @@ public class firstActivity extends AppCompatActivity {
 
         lvStamp=lv+1;
         tlv.setText("lv: "+ lvStamp.toString());/*stampo il vello*/
-
-        /*inizializzo nm tutto a 0*/
-        for(i=0; i<nt; i++){
-            nm[i]=0;
-        }
-        nm=ps.setNumBut(nt, nm);/*setto i numeri casuali*/
+        // setto gli id di buttons
+        ps.setIdButtons(nt);
 
 
         /*scrivo i numeri casuali nei bottoni e il numero di bottoni*/
+        /*
+        non c'è di bisogno con la nuova classe perchè ogni volta che setto l'id cambio anche il
+        testo, aggiungo anche che quando faccio l'estrazione in settaggio vado a mettere il colore
+        a blue;
+         */
         for(i=0; i<nt; i++){
-            abut[i].setText(nm[i].toString());
-            abut[i].setBackgroundColor(blue);
-                if(nm[i]>lvOff){
-                    abut[i].setVisibility(View.INVISIBLE);
+            buttons[i].setColor("blue");
+                if(buttons[i].getId()>lvOff){
+                    buttons[i].setVisible(false);
                 }
         }
         /*setto il valore max raggiungibile*/
 
-        final int max=lvOff;
+        max=lvOff;
 
         /*difficoltà 5 livello*/
-        if(lv>=4 && lv<19){/*perchè i livelli partono segnati da 0*/
+        if(lv>=4 && lv<14){/*perchè i livelli partono segnati da 0*/
             nRosso=ps.setnRosso(max);
 
         }
-        if(lv>=24){
+        if(lv>=19 && lv<34){
+            nRosso=ps.setnRosso(max);
+        }
+        if(lv>=39){
             nRosso=ps.setnRosso(max);
         }
         /*difficoltà livello 10, verde*/
-        if(lv>=9 && lv<19){
+        if(lv>=9 && lv<14){
+            flagVerde=random.nextInt(100)%2;
+        }
+        if(lv>=29 && lv<34){
             flagVerde=random.nextInt(100)%2;
         }
 
@@ -127,71 +141,85 @@ public class firstActivity extends AppCompatActivity {
         }
         if(nVerde==1){
             for(z=0; z<nt; z++) {
-                if (nm[z] == nVerde) {
-                    abut[z].setBackgroundColor(green);
+                if (buttons[z].getId() == nVerde) {
+                    buttons[z].setColor("green");
                 }
             }
         }
-        if(lv>=19){/*difficoltà livello 20, switch numeri*/
-            nSwitch=ps.setnSwitch(max);
-            while(nSwitch==nRosso || nSwitch==nRosso-1){
-                nSwitch=ps.setnSwitch(max);
+        if(lv>=14 && lv<24) {/*difficoltà livello 15, switch numeri*/
+            nSwitch = ps.setnSwitch(max);
+            while (nSwitch == nRosso || nSwitch == nRosso - 1) {
+                nSwitch = ps.setnSwitch(max);
             }
         }
-
-        /*faccio partire il timer*/
-
-        final int flagRosso=nRosso;
-        final int fflagVerde=nVerde;
-        final long ftRet=tRet;
+        if(lv>=34){
+            nSwitch = ps.setnSwitch(max);
+            while (nSwitch == nRosso || nSwitch == nRosso - 1) {
+                nSwitch = ps.setnSwitch(max);
+            }
+        }
 
         final Intent ilv=new Intent(firstActivity.this, InterLvActivity.class);
 
         for(i=0; i<nt; i++){
             final int k=i;
-            abut[i].setOnClickListener(new View.OnClickListener() {
-                @Override
+          //  abut[i].setOnClickListener(new View.OnClickListener(){
+           buttons[i].getButton().setOnClickListener(new View.OnClickListener(){
                 public void onClick(View v) {
+                    int ciclo, button1=-1, button2=-1;
                     int j=0;
-                    abut[k].setVisibility(View.INVISIBLE);
+                    buttons[k].setVisible(false);
                     /*se ho premuto giusto*/
-                    if(count==nm[k]-1){
+                    if(count==buttons[k].getId()-1){
                         count++;
-                        if(flagRosso==nm[k]+1){  /*controllo rosso*/
+                        //da continuare perchè vogliamo fare che id e indice non corrispondono
+                        //seleziono i bottoni che mi servono, successivo ecc.
+                        for(ciclo = 0; ciclo < nt; ciclo++){
+
+                            if(buttons[ciclo].getId()==buttons[k].getId()+1){
+                                button1=ciclo;
+                            }
+                            if(buttons[ciclo].getId()==buttons[k].getId()+2){
+                                button2=ciclo;
+                            }
+                        }
+                        //scrivo così perchè i valori nei flag partono da 1
+                        if(button1!=-1&&buttons[button1].getId()==nRosso){ /*controllo rosso*/
                             count++;
-                            if (fflagVerde == nm[k]){/*se il rosso è subito dopo il verde*/
+                            //parte per vedere qual è il prossimo bottone e quello dopo due
+                            if(nVerde==buttons[k].getId()){/*se il rosso è subito dopo il verde*/
                                 if(fiVerde==0){
                                     count--;
                                 }
                             }
-                            if(fflagVerde==nm[k]+2){
+                            if(button2!=-1&&nVerde==buttons[button2].getId()){
                                 for (j = 0; j < nt; j++) {
-                                    if (nm[j] == fflagVerde) {
-                                        abut[j].setBackgroundColor(green);
+                                    if(buttons[j].getId()==nVerde){
+                                        buttons[j].setColor("green");
                                     }
                                 }
                             }
                             for(j=0; j<nt; j++){
-                                if(nm[j]==flagRosso){
-                                    abut[j].setBackgroundColor(red);
+                                if(buttons[j].getId()==nRosso){
+                                    buttons[j].setColor("red");
                                 }
                             }
 
                         }
 
 
-                        if (fflagVerde == nm[k] + 1) {/*controllo verde*/
+                        if(button1!=-1&&nVerde==buttons[button1].getId()){/*controllo verde*/
                             for (j = 0; j < nt; j++) {
-                                if (nm[j] == fflagVerde) {
-                                    abut[j].setBackgroundColor(green);
+                                if(buttons[j].getId()==nVerde){
+                                    buttons[j].setColor("green");
                                 }
                             }
                         }
                         if(fiVerde==0) {
-                            if (fflagVerde == nm[k]) {
+                            if(nVerde==buttons[k].getId()){
                                 if (fiVerde == 0) {
                                     count--;
-                                    abut[k].setVisibility(View.VISIBLE);
+                                    buttons[k].getButton().setVisibility(View.VISIBLE);
                                 }
                                 fiVerde = 1;
 
@@ -201,16 +229,16 @@ public class firstActivity extends AppCompatActivity {
                             fiVerde=0;
                         }
                         /*controllo switch*/
-                        if(nm[k]==nSwitch){
-                            nm=ps.setNumBut(nt, nm); /*risetto i bottoni*/
+                        if(buttons[k].getId()==nSwitch){
+                            ps.setIdButtons(nt);/*risetto i bottoni*/
                             for(j=0; j<nt; j++){
-                                abut[j].setText(nm[j].toString());/*faccio ristampare i bottoni*/
-                                if(nm[j]>lvOff || nm[j]<=count){/*risetto i bottoni alti invisibili*/
-                                    abut[j].setVisibility(View.INVISIBLE);
+
+                                if(buttons[j].getId()>lvOff || buttons[j].getId()<=count){/*risetto i bottoni alti invisibili*/
+                                    buttons[j].setVisible(false);
                                 }
                                 else{
-                                    abut[j].setVisibility(View.VISIBLE);/*risetto i bottoni giusti visibili*/
-                                    abut[j].setBackgroundColor(blue);/*pulisco i bottoni eventualmente colorati di rosso*/
+                                    buttons[j].setVisible(true);/*risetto i bottoni giusti visibili*/
+                                    buttons[j].setColor("blue");/*pulisco i bottoni eventualmente colorati di rosso*/
                                 }
 
                             }
@@ -218,7 +246,7 @@ public class firstActivity extends AppCompatActivity {
 
 
                         if(count==max || count==nt){/*se ho finito il livello*/
-                            if(mlv==lvmax){/*se era l'ultimo livello e ho vinto*/
+                            if(lv==lvmax){/*se era l'ultimo livello e ho vinto*/
                                 timer.cancel();
                                 iv.putExtra("esito", 1);
                                 startActivity(iv);
@@ -226,7 +254,7 @@ public class firstActivity extends AppCompatActivity {
                             }
                             else{/*se devo continuare con altri livelli*/
                                 timer.cancel();
-                                ilv.putExtra("livello", mlv+1);
+                                ilv.putExtra("livello", lv+1);
                                 startActivity(ilv);
 
                             }
@@ -237,7 +265,7 @@ public class firstActivity extends AppCompatActivity {
                     else{
                         timer.cancel();
                         iv.putExtra("esito", 0);
-                        iv.putExtra("livello", mlv+1);
+                        iv.putExtra("livello", lv+1);
                         startActivity(iv);
                     }
                 }
@@ -246,6 +274,18 @@ public class firstActivity extends AppCompatActivity {
         }
         timer.start();
 
+    }
+
+    /*per gestire il bottone indietro*/
+    @Override
+    public void onBackPressed() {
+    }
+    /*fine sezione bottone indietro*/
+    @Override
+    public void  onPause(){
+
+        super.onPause();
+        finish();
     }
 }
 

@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/testoRegole"
-        style="@style/MioTema"
-        android:layout_width="211dp"
-        android:layout_height="128dp"
-        android:text="Prova"
+    <Button
+        android:id="@+id/bRegole"
+        android:layout_width="389dp"
+        android:layout_height="580dp"
+        android:text="Regole"
+        android:backgroundTint="#FFFFFF"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
