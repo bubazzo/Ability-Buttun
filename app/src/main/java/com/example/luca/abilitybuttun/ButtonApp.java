@@ -1,5 +1,6 @@
 package com.example.luca.abilitybuttun;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
 
@@ -49,7 +50,12 @@ public class ButtonApp {
         else
             button.setVisibility(View.INVISIBLE);
     }
-    public void setBackground(){
 
+    public void setBackImage(){
+        button.setBackgroundResource(R.mipmap.free_button);
+    }
+
+    public void setTextColorAzz(){
+        button.setTextColor(Color.parseColor("#00FFFF")); //ci sarà un modo migliore
     }
 }

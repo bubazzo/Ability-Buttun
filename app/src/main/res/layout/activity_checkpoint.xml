@@ -14,7 +14,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="80dp"
         android:text="cpButton1"
-        style="@style/TemaStart"
+        style="@style/MioTemaBianco"
         app:layout_constraintEnd_toStartOf="@+id/cpButton2"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +27,7 @@
         android:layout_marginEnd="70dp"
         android:layout_marginTop="80dp"
         android:text="cpButton2"
-        style="@style/TemaStart"
+        style="@style/MioTemaBianco"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,7 +40,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="60dp"
         android:text="cpButton3"
-        style="@style/TemaStart"
+        style="@style/MioTemaBianco"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cpButton4"
         app:layout_constraintHorizontal_bias="0.33"
@@ -56,7 +56,7 @@
         android:layout_marginEnd="70dp"
         android:layout_marginTop="60dp"
         android:text="cpButton4"
-        style="@style/TemaStart"
+        style="@style/MioTemaBianco"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cpButton2"
@@ -64,7 +64,7 @@
 
     <Button
         android:id="@+id/cpButton5"
-        style="@style/TemaStart"
+        style="@style/MioTemaBianco"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginBottom="140dp"
@@ -78,7 +78,7 @@
 
     <Button
         android:id="@+id/cpButton6"
-        style="@style/TemaStart"
+        style="@style/MioTemaBianco"
         android:layout_width="100dp"
         android:layout_height="60dp"
         android:layout_marginBottom="140dp"
@@ -97,6 +97,7 @@
         android:id="@+id/textLivello"
         android:layout_width="81dp"
         android:layout_height="45dp"
+        android:fontFamily="bungee_inline"
         android:text="TextView"
         tools:layout_editor_absoluteX="152dp"
         tools:layout_editor_absoluteY="2dp" />

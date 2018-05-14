@@ -19,7 +19,7 @@
 
     <Button
         android:id="@+id/restart"
-        style="@style/TemaStart"
+        style="@style/MioTemaBianco"
         android:layout_width="161dp"
         android:layout_height="91dp"
         android:backgroundTint="@color/colorPrimary"

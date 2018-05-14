@@ -2,16 +2,19 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorNero"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
+
     <Button
         android:id="@+id/b1"
-        style="@style/TemaBot"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="1"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b2"
         app:layout_constraintHorizontal_bias="0.5"
@@ -21,10 +24,11 @@
 
     <Button
         android:id="@+id/b2"
-        style="@style/TemaBot"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="2"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -34,12 +38,13 @@
         app:layout_constraintVertical_bias="0.374" />
 
     <TextView
-        android:id="@+id/textView2"
-        style="@style/MioTema"
-        android:layout_width="281dp"
-        android:layout_height="95dp"
+        android:id="@+id/tlv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:text="Premi i numeri in ordine\n              crescente"
+        android:fontFamily="@font/bungee_inline"
+        android:textColor="@color/colorAzzurro"
+        android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,10 +59,11 @@
 
     <Button
         android:id="@+id/b3"
-        style="@style/TemaBot"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="3"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.619"
@@ -67,10 +73,11 @@
 
     <Button
         android:id="@+id/b4"
-        style="@style/TemaBot"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="4"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b5"
@@ -82,10 +89,11 @@
 
     <Button
         android:id="@+id/b5"
-        style="@style/TemaBot"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="5"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -97,10 +105,11 @@
 
     <Button
         android:id="@+id/b6"
-        style="@style/TemaBot"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="6"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.619"
@@ -110,10 +119,11 @@
 
     <Button
         android:id="@+id/b7"
-        style="@style/TemaBot"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="7"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/b8"
         app:layout_constraintHorizontal_bias="0.0"
@@ -123,10 +133,11 @@
 
     <Button
         android:id="@+id/b8"
-        style="@style/TemaBot"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="8"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,10 +146,11 @@
 
     <Button
         android:id="@+id/b9"
-        style="@style/TemaBot"
         android:layout_width="100dp"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="9"
+        android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.619"
@@ -152,18 +164,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp" />
-
-    <TextView
-        android:id="@+id/tlv"
-        style="@style/Tlivello"
-        android:layout_width="64dp"
-        android:layout_height="32dp"
-        android:text="livello"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
-        app:layout_constraintStart_toEndOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tTimer"

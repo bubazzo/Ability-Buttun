@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -15,7 +15,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TemaStart" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="MioTemaBianco" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="android:textColor">#FFFFFF</item>
         <item name="android:textSize">25sp</item>
@@ -46,7 +46,7 @@
     <style name="TemaBot" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">40sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 

@@ -108,7 +108,9 @@ public class firstActivity extends AppCompatActivity {
         a blue;
          */
         for(i=0; i<nt; i++){
-            buttons[i].setColor("blue");
+            //buttons[i].setColor("blue");
+            buttons[i].setBackImage();
+            buttons[i].setTextColorAzz();
                 if(buttons[i].getId()>lvOff){
                     buttons[i].setVisible(false);
                 }
