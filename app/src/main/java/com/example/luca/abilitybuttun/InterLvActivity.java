@@ -8,6 +8,7 @@ import android.widget.Button;
 /*per il bottone indietro*/
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.TextView;
 
 
 /**
@@ -15,32 +16,17 @@ import android.content.DialogInterface;
  */
 
 public class InterLvActivity extends AppCompatActivity {
+    Integer lv=0, lvSucc=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interlv);
-        Button button=(Button) findViewById(R.id.bInter);
         Intent i=getIntent();
-        final Integer lv=i.getIntExtra("livello", -1);
-        final Integer lvSucc=lv+1;
-        button.setText("lv"+lv.toString()+" completed\nTap to start lv"+lvSucc.toString());
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(lvSucc==5 || lvSucc==10 || lvSucc==15 || lvSucc==20 || lvSucc==25 || lvSucc==30
-                        || lvSucc==35 || lvSucc==40){
-                    Intent iR=new Intent(InterLvActivity.this, RegoleActivity.class);
-                    iR.putExtra("livello", lv);
-                    startActivity(iR);
-                }
-                else{
-                    Intent iLv=new Intent(InterLvActivity.this, firstActivity.class);
-                    iLv.putExtra("livello", lv);
-                    startActivity(iLv);
-                }
-
-            }
-        });
+        lv=i.getIntExtra("livello", -1);
+        lvSucc=lv+1;
+        TextView testoBase=(TextView) findViewById(R.id.testoBase);
+        testoBase.setText("lv"+lv.toString()+" completed\nTap to start lv"+lvSucc.toString());
     }
 
     /*per gestire il bottone indietro*/
@@ -72,5 +58,21 @@ public class InterLvActivity extends AppCompatActivity {
     public void  onPause(){
         super.onPause();
         finish();
+    }
+
+    public void onUserInteraction(){
+        super.onUserInteraction();
+
+        if(lvSucc==5 || lvSucc==10 || lvSucc==15 || lvSucc==20 || lvSucc==25 || lvSucc==30
+                || lvSucc==35 || lvSucc==40){
+            Intent iR=new Intent(InterLvActivity.this, RegoleActivity.class);
+            iR.putExtra("livello", lv);
+            startActivity(iR);
+        }
+        else{
+            Intent iLv=new Intent(InterLvActivity.this, firstActivity.class);
+            iLv.putExtra("livello", lv);
+            startActivity(iLv);
+        }
     }
 }

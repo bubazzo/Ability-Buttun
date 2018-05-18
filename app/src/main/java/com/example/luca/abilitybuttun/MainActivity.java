@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Button start=(Button) findViewById(R.id.start);
+                start.setBackgroundResource(R.mipmap.botton_start_pressed);
                 Intent i=new Intent(MainActivity.this, CheckpointActivity.class);
                 startActivity(i);
             }
@@ -110,7 +112,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void  onPause() {
         super.onPause();
-        finish();
+        //finish(); da controllare se rimettere
+    }
+
+    public void onDestroy(){
+        super.onDestroy();
+        stopService(new Intent(this,MusicService.class));//chiude muscia, da controllare se giusto
     }
 
 }

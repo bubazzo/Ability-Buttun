@@ -55,7 +55,7 @@ public class ButtonApp {
         button.setBackgroundResource(R.mipmap.free_button);
     }
 
-    public void setTextColorAzz(){
-        button.setTextColor(Color.parseColor("#00FFFF")); //ci sarà un modo migliore
+    public void setColorText(String color){
+        button.setTextColor(colors.get(color));
     }
 }

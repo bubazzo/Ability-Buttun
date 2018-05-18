@@ -40,9 +40,11 @@ public class firstActivity extends AppCompatActivity {
         final int blue = Color.parseColor("#3F51B5");
         final int red= Color.parseColor("#ae0c00");
         final int green=Color.parseColor("#00ff00");
+        final int azzurro=Color.parseColor("#00FFFF");
         colors.put("blue",blue);
         colors.put("red",red);
         colors.put("green",green);
+        colors.put("azzurro", azzurro);
 
 
 
@@ -88,6 +90,7 @@ public class firstActivity extends AppCompatActivity {
             }
 
             public void onFinish() {/*ho perso per fine tempo*/
+                tTimer.setText("0");//faccio scrivere 0 prima di chiudere il timer
                 iv.putExtra("esito", 0);
                 iv.putExtra("livello", lv+1);
                 startActivity(iv);
@@ -110,7 +113,7 @@ public class firstActivity extends AppCompatActivity {
         for(i=0; i<nt; i++){
             //buttons[i].setColor("blue");
             buttons[i].setBackImage();
-            buttons[i].setTextColorAzz();
+            buttons[i].setColorText("azzurro");
                 if(buttons[i].getId()>lvOff){
                     buttons[i].setVisible(false);
                 }

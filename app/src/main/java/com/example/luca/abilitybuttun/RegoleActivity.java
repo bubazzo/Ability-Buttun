@@ -16,55 +16,48 @@ import android.content.DialogInterface;
  */
 
 public class RegoleActivity extends AppCompatActivity {
+    Integer lv=0, lvSucc=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         final long time=2000;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_regole);
-        Button button= (Button) findViewById(R.id.bRegole);
         Intent i=getIntent();
-        final Integer lv=i.getIntExtra("livello", -1);
-        Integer lvSucc=lv+1;
+        lv=i.getIntExtra("livello", -1);
+        lvSucc=lv+1;
+        TextView testoRegole=(TextView) findViewById(R.id.testoRegole);
 
         switch(lvSucc){
             case 1:
-                button.setText("Premi i numeri in ordine crescente\n\nTempo 3s");
+                testoRegole.setText("Premi i numeri in ordine crescente\n\nTempo 3s");
                 break;
             case 5:
-                button.setText("Don't click the red button");
+                testoRegole.setText("Don't click the red button");
                 break;
             case 10:
-                button.setText("Clicca 2 volte il bottone verde");
+                testoRegole.setText("Clicca 2 volte il bottone verde");
                 break;
             case 15:
-                button.setText("Scambio posizione");
+                testoRegole.setText("Scambio posizione");
                 break;
             case 20:
-                button.setText("Scambio posizione + rosso");
+                testoRegole.setText("Scambio posizione + rosso");
                 break;
             case 25:
-                button.setText("Tempo 2,5 secondi\nNon premere il rosso");
+                testoRegole.setText("Tempo 2,5 secondi\nNon premere il rosso");
                 break;
             case 30:
-                button.setText("Clicca 2 volte il bottone verde");
+                testoRegole.setText("Clicca 2 volte il bottone verde");
                 break;
             case 35:
-                button.setText("Scambio posizione");
+                testoRegole.setText("Scambio posizione");
                 break;
             case 40:
-                button.setText("Scambio posizione + rosso");
+                testoRegole.setText("Scambio posizione + rosso");
                 break;
             default:
         }
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent iLv=new Intent(RegoleActivity.this, firstActivity.class);
-                iLv.putExtra("livello", lv);
-                startActivity(iLv);
-            }
-        });
 
     }
 
@@ -97,5 +90,12 @@ public class RegoleActivity extends AppCompatActivity {
     public void  onPause(){
         super.onPause();
         finish();
+    }
+
+    public void onUserInteraction(){
+        super.onUserInteraction();
+        Intent iLv=new Intent(RegoleActivity.this, firstActivity.class);
+        iLv.putExtra("livello", lv);
+        startActivity(iLv);
     }
 }
