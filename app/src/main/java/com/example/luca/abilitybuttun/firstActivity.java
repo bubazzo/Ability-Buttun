@@ -206,7 +206,7 @@ public class firstActivity extends AppCompatActivity {
                             }
                             for(j=0; j<nt; j++){
                                 if(buttons[j].getId()==nRosso){
-                                    buttons[j].setColor("red");
+                                    buttons[j].setRedButton();
                                 }
                             }
 
@@ -243,7 +243,8 @@ public class firstActivity extends AppCompatActivity {
                                 }
                                 else{
                                     buttons[j].setVisible(true);/*risetto i bottoni giusti visibili*/
-                                    buttons[j].setColor("blue");/*pulisco i bottoni eventualmente colorati di rosso*/
+                                    buttons[j].setBackImage();
+                                    buttons[j].setColorText("azzurro");/*pulisco i bottoni eventualmente colorati di rosso*/
                                 }
 
                             }

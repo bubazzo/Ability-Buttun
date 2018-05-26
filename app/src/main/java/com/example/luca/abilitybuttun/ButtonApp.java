@@ -58,4 +58,8 @@ public class ButtonApp {
     public void setColorText(String color){
         button.setTextColor(colors.get(color));
     }
+     public void setRedButton(){
+        button.setBackgroundResource(R.mipmap.but_rosso);
+        button.setTextColor(colors.get("red"));
+     }
 }

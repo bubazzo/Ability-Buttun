@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void  onPause() {
         super.onPause();
-        //finish(); da controllare se rimettere
+        //finish(); //da controllare se rimettere
     }
 
     public void onDestroy(){
