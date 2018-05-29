@@ -56,6 +56,18 @@ public class RegoleActivity extends AppCompatActivity {
             case 40:
                 testoRegole.setText("Scambio posizione + rosso");
                 break;
+            case 45:
+                testoRegole.setText("Tempo 2 secondi\nNon premere il rosso");
+                break;
+            case 50:
+                testoRegole.setText("Clicca 2 volte il bottone verde");
+                break;
+            case 55:
+                testoRegole.setText("Scambio posizione");
+                break;
+            case 60:
+                testoRegole.setText("Scambio posizione + rosso");
+                break;
             default:
         }
 

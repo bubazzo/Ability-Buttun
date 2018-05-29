@@ -64,7 +64,8 @@ public class InterLvActivity extends AppCompatActivity {
         super.onUserInteraction();
 
         if(lvSucc==5 || lvSucc==10 || lvSucc==15 || lvSucc==20 || lvSucc==25 || lvSucc==30
-                || lvSucc==35 || lvSucc==40){
+                || lvSucc==35 || lvSucc==40 || lvSucc==45 || lvSucc==50 || lvSucc==55
+                || lvSucc==60){
             Intent iR=new Intent(InterLvActivity.this, RegoleActivity.class);
             iR.putExtra("livello", lv);
             startActivity(iR);

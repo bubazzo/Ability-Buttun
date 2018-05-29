@@ -21,7 +21,7 @@ import java.util.*;
 public class firstActivity extends AppCompatActivity {
     private int count=0, nSwitch=-1, lv=0, fiVerde=0, lvOff=0, nt=9, max=0,
             nRosso=-1, nVerde=-1, flagVerde=-1, maxNb=6;
-    private int lvmax=99;  /*1 in meno del livello segnato => i livello internamente partono da 0
+    private int lvmax=64;  /*1 in meno del livello segnato => i livello internamente partono da 0
         ma vengono visualizzati a partire da 1*/
     private ButtonApp[] buttons = new ButtonApp[9];
 
@@ -82,6 +82,9 @@ public class firstActivity extends AppCompatActivity {
         if(lv>=24){/*setto il tempo*/
             tBase=2500;
         }
+        if(lv>=44){
+            tBase=2000;
+        }
         /*creazione timer*/
         final CountDownTimer timer=new CountDownTimer(tBase, tInt) {
 
@@ -125,12 +128,14 @@ public class firstActivity extends AppCompatActivity {
         /*difficoltà 5 livello*/
         if(lv>=4 && lv<14){/*perchè i livelli partono segnati da 0*/
             nRosso=ps.setnRosso(max);
-
         }
         if(lv>=19 && lv<34){
             nRosso=ps.setnRosso(max);
         }
-        if(lv>=39){
+        if(lv>=39 && lv<54){
+            nRosso=ps.setnRosso(max);
+        }
+        if(lv>=59){
             nRosso=ps.setnRosso(max);
         }
         /*difficoltà livello 10, verde*/
@@ -140,6 +145,9 @@ public class firstActivity extends AppCompatActivity {
         if(lv>=29 && lv<34){
             flagVerde=random.nextInt(100)%2;
         }
+        if(lv>=49 && lv<54){
+            flagVerde=random.nextInt(100)%2;
+        }
 
         if(flagVerde==1){
             nVerde=ps.setnVerde(max);
@@ -147,7 +155,7 @@ public class firstActivity extends AppCompatActivity {
         if(nVerde==1){
             for(z=0; z<nt; z++) {
                 if (buttons[z].getId() == nVerde) {
-                    buttons[z].setColor("green");
+                    buttons[z].setGreenButton();
                 }
             }
         }
@@ -157,7 +165,13 @@ public class firstActivity extends AppCompatActivity {
                 nSwitch = ps.setnSwitch(max);
             }
         }
-        if(lv>=34){
+        if(lv>=34 && lv<44){
+            nSwitch = ps.setnSwitch(max);
+            while (nSwitch == nRosso || nSwitch == nRosso - 1) {
+                nSwitch = ps.setnSwitch(max);
+            }
+        }
+        if(lv>=54){
             nSwitch = ps.setnSwitch(max);
             while (nSwitch == nRosso || nSwitch == nRosso - 1) {
                 nSwitch = ps.setnSwitch(max);
@@ -200,7 +214,7 @@ public class firstActivity extends AppCompatActivity {
                             if(button2!=-1&&nVerde==buttons[button2].getId()){
                                 for (j = 0; j < nt; j++) {
                                     if(buttons[j].getId()==nVerde){
-                                        buttons[j].setColor("green");
+                                        buttons[j].setGreenButton();
                                     }
                                 }
                             }
@@ -216,7 +230,7 @@ public class firstActivity extends AppCompatActivity {
                         if(button1!=-1&&nVerde==buttons[button1].getId()){/*controllo verde*/
                             for (j = 0; j < nt; j++) {
                                 if(buttons[j].getId()==nVerde){
-                                    buttons[j].setColor("green");
+                                    buttons[j].setGreenButton();
                                 }
                             }
                         }

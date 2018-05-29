@@ -2,15 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.luca.abilitybuttun">
 
-
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/b_start"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,40 +20,37 @@
         </activity>
         <activity
             android:name=".firstActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
-        </activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".VictoryActivity"
-            android:screenOrientation="portrait"
+            android:label="@string/app_name"
             android:parentActivityName=".MainActivity"
-            android:label="@string/app_name" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".InterLvActivity"
-            android:screenOrientation="portrait"
+            android:label="ability buttun"
             android:parentActivityName=".MainActivity"
-            android:label="ability buttun" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".RegoleActivity"
-            android:screenOrientation="portrait"
+            android:label="ability buttun"
             android:parentActivityName=".MainActivity"
-            android:label="ability buttun" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".CheckpointActivity"
-            android:screenOrientation="portrait"
+            android:label="ability buttun"
             android:parentActivityName=".MainActivity"
-            android:label="ability buttun" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
+
         <service
-            android:name="com.example.luca.abilitybuttun.MusicService"
-            android:enabled="true">
-        </service>
+            android:name=".MusicService"
+            android:enabled="true"></service>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
