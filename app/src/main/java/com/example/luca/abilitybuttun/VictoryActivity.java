@@ -32,6 +32,7 @@ public class VictoryActivity extends AppCompatActivity {
         int ris=i.getIntExtra("esito", -1);
         Button restart=(Button) findViewById(R.id.restart);
         TextView testoLv=(TextView) findViewById(R.id.tlvR);
+        TextView testoMotivo=(TextView) findViewById(R.id.motivazione);
         String preference_name = "Pref1";
 
         SharedPreferences prefs = getSharedPreferences(preference_name, Context.MODE_PRIVATE);
@@ -42,13 +43,26 @@ public class VictoryActivity extends AppCompatActivity {
         if(ris==0){
             testo.setText("YOU LOSE");
             testo.setTextColor(Color.RED);
-            lvStamp=lvR;
-            testoLv.setText("lv: "+ lvStamp.toString());
+
         }
         if(ris==1){
             testo.setText("YOU WIN");
             testoLv.setVisibility(View.INVISIBLE);
         }
+        else{
+            testo.setText("YOU LOSE");
+            testo.setTextColor(Color.RED);
+            lvStamp=lvR;
+            testoLv.setText("lv: "+ lvStamp.toString());
+            if(ris==0){
+                testoMotivo.setText("Tempo scaduto");
+            }
+            else{
+                testoMotivo.setText("Premuto bottone sbagliato");
+            }
+        }
+
+        restart.setBackgroundResource(R.mipmap.free_button);
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

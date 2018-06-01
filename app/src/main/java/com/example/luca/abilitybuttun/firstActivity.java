@@ -284,7 +284,7 @@ public class firstActivity extends AppCompatActivity {
                     /*se ho premuto sbagliato*/
                     else{
                         timer.cancel();
-                        iv.putExtra("esito", 0);
+                        iv.putExtra("esito", 2);
                         iv.putExtra("livello", lv+1);
                         startActivity(iv);
                     }

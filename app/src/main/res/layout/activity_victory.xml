@@ -3,43 +3,72 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorNero">
 
     <TextView
         android:id="@+id/victory"
         style="@style/Twin"
-        android:layout_width="133dp"
-        android:layout_height="56dp"
+        android:layout_width="329dp"
+        android:layout_height="49dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="OPS!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136" />
-
-    <Button
-        android:id="@+id/restart"
-        style="@style/MioTemaBianco"
-        android:layout_width="161dp"
-        android:layout_height="91dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="RESTART"
+        android:textAlignment="center"
+        android:textColor="@color/colorAzzurro"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678" />
+        app:layout_constraintVertical_bias="0.106" />
+
+    <Button
+        android:id="@+id/restart"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:text="RESTART"
+        android:fontFamily="@font/bungee_inline"
+        android:textSize="15dp"
+        android:textColor="@color/colorAzzurro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.728" />
 
     <TextView
         android:id="@+id/tlvR"
         style="@style/MioTema"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/bungee_inline"
         android:text="Lv Raggiunto"
+        android:textAlignment="center"
+        android:textColor="@color/colorAzzurro"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/restart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/motivazione"
+        android:layout_width="333dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/bungee_inline"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@color/colorAzzurro"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/victory" />
 </android.support.constraint.ConstraintLayout>
