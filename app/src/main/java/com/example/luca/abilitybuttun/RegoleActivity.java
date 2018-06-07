@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 /*per il bottone indietro*/
@@ -71,6 +72,18 @@ public class RegoleActivity extends AppCompatActivity {
             default:
         }
 
+        //parte per gestire il tocco delle schermo
+        ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
+                .findViewById(android.R.id.content)).getChildAt(0);
+        viewGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent iLv=new Intent(RegoleActivity.this, firstActivity.class);
+                iLv.putExtra("livello", lv);
+                startActivity(iLv);
+            }
+        });//fine gestione tocco schermo
+
     }
 
     /*per gestire il bottone indietro*/
@@ -104,10 +117,4 @@ public class RegoleActivity extends AppCompatActivity {
         finish();
     }
 
-    public void onUserInteraction(){
-        super.onUserInteraction();
-        Intent iLv=new Intent(RegoleActivity.this, firstActivity.class);
-        iLv.putExtra("livello", lv);
-        startActivity(iLv);
-    }
 }

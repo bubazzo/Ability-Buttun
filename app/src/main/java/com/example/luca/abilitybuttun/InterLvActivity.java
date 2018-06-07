@@ -3,7 +3,9 @@ package com.example.luca.abilitybuttun;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 /*per il bottone indietro*/
 import android.app.AlertDialog;
@@ -27,6 +29,28 @@ public class InterLvActivity extends AppCompatActivity {
         lvSucc=lv+1;
         TextView testoBase=(TextView) findViewById(R.id.testoBase);
         testoBase.setText("lv"+lv.toString()+" completed\nTap to start lv"+lvSucc.toString());
+
+        //parte per gestire il tocco delle schermo
+        ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this
+                .findViewById(android.R.id.content)).getChildAt(0);
+        viewGroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(lvSucc==5 || lvSucc==10 || lvSucc==15 || lvSucc==20 || lvSucc==25 || lvSucc==30
+                        || lvSucc==35 || lvSucc==40 || lvSucc==45 || lvSucc==50 || lvSucc==55
+                        || lvSucc==60){
+                    Intent iR=new Intent(InterLvActivity.this, RegoleActivity.class);
+                    iR.putExtra("livello", lv);
+                    startActivity(iR);
+                }
+                else{
+                    Intent iLv=new Intent(InterLvActivity.this, firstActivity.class);
+                    iLv.putExtra("livello", lv);
+                    startActivity(iLv);
+                }
+            }
+
+        });//fine gestione tocco schermo
     }
 
     /*per gestire il bottone indietro*/
@@ -60,20 +84,4 @@ public class InterLvActivity extends AppCompatActivity {
         finish();
     }
 
-    public void onUserInteraction(){
-        super.onUserInteraction();
-
-        if(lvSucc==5 || lvSucc==10 || lvSucc==15 || lvSucc==20 || lvSucc==25 || lvSucc==30
-                || lvSucc==35 || lvSucc==40 || lvSucc==45 || lvSucc==50 || lvSucc==55
-                || lvSucc==60){
-            Intent iR=new Intent(InterLvActivity.this, RegoleActivity.class);
-            iR.putExtra("livello", lv);
-            startActivity(iR);
-        }
-        else{
-            Intent iLv=new Intent(InterLvActivity.this, firstActivity.class);
-            iLv.putExtra("livello", lv);
-            startActivity(iLv);
-        }
-    }
 }
