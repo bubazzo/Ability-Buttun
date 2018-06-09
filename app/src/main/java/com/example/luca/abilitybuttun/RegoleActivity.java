@@ -34,7 +34,7 @@ public class RegoleActivity extends AppCompatActivity {
                 testoRegole.setText("Premi i numeri in ordine crescente\n\nTempo 3s");
                 break;
             case 5:
-                testoRegole.setText("Don't click the red button");
+                testoRegole.setText(R.string.click_red_button);
                 break;
             case 10:
                 testoRegole.setText("Clicca 2 volte il bottone verde");
