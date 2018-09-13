@@ -20,7 +20,7 @@ import java.util.*;
 
 public class firstActivity extends AppCompatActivity {
     private int count=0, nSwitch=-1, lv=0, fiVerde=0, lvOff=0, nt=9, max=0,
-            nRosso=-1, nVerde=-1, flagVerde=-1, maxNb=6;
+            nRosso=-1, nVerde=-1, flagVerde=-1, maxNb=6, flagPause=0, tempoPause=20000;
     private int lvmax=64;  /*1 in meno del livello segnato => i livello internamente partono da 0
         ma vengono visualizzati a partire da 1*/
     private ButtonApp[] buttons = new ButtonApp[9];
@@ -93,10 +93,15 @@ public class firstActivity extends AppCompatActivity {
             }
 
             public void onFinish() {/*ho perso per fine tempo*/
-                tTimer.setText("0");//faccio scrivere 0 prima di chiudere il timer
-                iv.putExtra("esito", 0);
-                iv.putExtra("livello", lv+1);
-                startActivity(iv);
+                if(flagPause==0){
+                    tTimer.setText("0");//faccio scrivere 0 prima di chiudere il timer
+                    iv.putExtra("esito", 0);
+                    iv.putExtra("livello", lv+1);
+                    startActivity(iv);
+                }
+                else{
+                    finish();
+                }
             }
         };
 
@@ -303,9 +308,22 @@ public class firstActivity extends AppCompatActivity {
     /*fine sezione bottone indietro*/
     @Override
     public void  onPause(){
-
         super.onPause();
-        finish();
+        flagPause=1;
+        new CountDownTimer(tempoPause, 1000){
+            public void onFinish(){
+                if(flagPause==1){
+                    finish();
+                }
+            }
+            public void onTick(long t){
+            }
+        }.start();
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        flagPause=0;
     }
 }
 

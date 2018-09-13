@@ -1,6 +1,9 @@
 package com.example.luca.abilitybuttun;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -18,7 +21,7 @@ import android.widget.TextView;
  */
 
 public class InterLvActivity extends AppCompatActivity {
-    Integer lv=0, lvSucc=0;
+    Integer lv=0, lvSucc=0, flagPause=0, tempoPause=20000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +84,34 @@ public class InterLvActivity extends AppCompatActivity {
     @Override
     public void  onPause(){
         super.onPause();
-        finish();
+        flagPause=1;
+        new CountDownTimer(tempoPause, 1000){
+            public void onFinish(){
+                if(flagPause==1){
+                    finish();
+                }
+            }
+            public void onTick(long t){
+            }
+        }.start();
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        flagPause=0;
+    }
+
+    @Override
+    public void onStop(){
+        String preference_name = "Pref1";
+
+        SharedPreferences prefs = getSharedPreferences(preference_name, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        editor.putInt("lvPause", lv);
+        editor.putInt("isPause", 1);
+        editor.commit();
+        super.onStop();
     }
 
 }

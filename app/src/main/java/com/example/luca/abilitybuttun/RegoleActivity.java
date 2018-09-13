@@ -17,7 +17,7 @@ import android.content.DialogInterface;
  */
 
 public class RegoleActivity extends AppCompatActivity {
-    Integer lv=0, lvSucc=0;
+    Integer lv=0, lvSucc=0, flagPause=0, tempoPause=20000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +114,21 @@ public class RegoleActivity extends AppCompatActivity {
     @Override
     public void  onPause(){
         super.onPause();
-        finish();
+        flagPause=1;
+        new CountDownTimer(tempoPause, 1000){
+            public void onFinish(){
+                if(flagPause==1){
+                    finish();
+                }
+            }
+            public void onTick(long t){
+            }
+        }.start();
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        flagPause=0;
     }
 
 }

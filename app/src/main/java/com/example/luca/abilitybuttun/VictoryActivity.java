@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v4.content.res.ConfigurationHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import android.content.DialogInterface;
 
 
 public class VictoryActivity extends AppCompatActivity {
-    Integer lvStamp=0;
+    Integer lvStamp=0, flagPause=0, tempoPause=20000;
     int lvMax=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class VictoryActivity extends AppCompatActivity {
         }
 
         editor.putInt("livello", lvMax);
+        editor.putInt("isPause", 0);
         editor.commit();
     }
 
@@ -109,8 +111,22 @@ public class VictoryActivity extends AppCompatActivity {
     }
     /*fine sezione bottone indietro*/
     @Override
-    public void  onPause() {
+    public void  onPause(){
         super.onPause();
-        finish();
+        flagPause=1;
+        new CountDownTimer(tempoPause, 1000){
+            public void onFinish(){
+                if(flagPause==1){
+                    finish();
+                }
+            }
+            public void onTick(long t){
+            }
+        }.start();
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        flagPause=0;
     }
 }

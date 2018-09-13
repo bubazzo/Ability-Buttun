@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import android.widget.TextView;
 
 public class CheckpointActivity extends AppCompatActivity {
     Button arrBut[];
-    int i=0, ncp=6;
+    int i=0, ncp=6, flagPause=0, tempoPause=20000;
     Integer lvRaggiunto=0;
     Intent intento;
     int blue = Color.parseColor("#3F51B5");
@@ -130,6 +131,20 @@ public class CheckpointActivity extends AppCompatActivity {
     @Override
     public void  onPause(){
         super.onPause();
-        finish();
+        flagPause=1;
+        new CountDownTimer(tempoPause, 1000){
+            public void onFinish(){
+                if(flagPause==1){
+                    finish();
+                }
+            }
+            public void onTick(long t){
+            }
+        }.start();
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        flagPause=0;
     }
 }
