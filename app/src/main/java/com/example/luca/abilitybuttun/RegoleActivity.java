@@ -31,43 +31,43 @@ public class RegoleActivity extends AppCompatActivity {
 
         switch(lvSucc){
             case 1:
-                testoRegole.setText("Premi i numeri in ordine crescente\n\nTempo 3s");
+                testoRegole.setText("Press the numbers in ascending order\n\nTime 3s");
                 break;
             case 5:
-                testoRegole.setText(R.string.click_red_button);
+                testoRegole.setText("Don't press the red button");
                 break;
             case 10:
-                testoRegole.setText("Clicca 2 volte il bottone verde");
+                testoRegole.setText("Press the green button twice");
                 break;
             case 15:
-                testoRegole.setText("Scambio posizione");
+                testoRegole.setText("Numbers change position");
                 break;
             case 20:
-                testoRegole.setText("Scambio posizione + rosso");
+                testoRegole.setText("Numbers change position + red button");
                 break;
             case 25:
-                testoRegole.setText("Tempo 2,5 secondi\nNon premere il rosso");
+                testoRegole.setText("2.5 seconds\nDon't press the red button");
                 break;
             case 30:
-                testoRegole.setText("Clicca 2 volte il bottone verde");
+                testoRegole.setText("Press the green button twice");
                 break;
             case 35:
-                testoRegole.setText("Scambio posizione");
+                testoRegole.setText("Numbers change position");
                 break;
             case 40:
-                testoRegole.setText("Scambio posizione + rosso");
+                testoRegole.setText("Numbers change position + red button");
                 break;
             case 45:
-                testoRegole.setText("Tempo 2 secondi\nNon premere il rosso");
+                testoRegole.setText("2.5 seconds\nDon't press the red button");
                 break;
             case 50:
-                testoRegole.setText("Clicca 2 volte il bottone verde");
+                testoRegole.setText("Press the green button twice");
                 break;
             case 55:
-                testoRegole.setText("Scambio posizione");
+                testoRegole.setText("Numbers change position");
                 break;
             case 60:
-                testoRegole.setText("Scambio posizione + rosso");
+                testoRegole.setText("Numbers change position + red button");
                 break;
             default:
         }
@@ -91,7 +91,7 @@ public class RegoleActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setMessage("Tornare al menù principale?");
+        builder.setMessage("Return to Main Menù?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

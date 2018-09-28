@@ -14,6 +14,13 @@ import android.content.DialogInterface;
 
 import java.util.Random;
 import java.util.*;
+
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 /**
  * Created by Luca on 18/11/2017.
  */
@@ -25,14 +32,34 @@ public class firstActivity extends AppCompatActivity {
         ma vengono visualizzati a partire da 1*/
     private ButtonApp[] buttons = new ButtonApp[9];
 
+    Intent ilv;
+
     settaggio ps=new settaggio(buttons){};
     private HashMap<String,Integer> colors=new HashMap<>();
-
+    private InterstitialAd mInterstitial;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_activity);
+
+
+        mInterstitial = new InterstitialAd(this);
+        //test ca-app-pub-3940256099942544/1033173712
+        //nostro ca-app-pub-6641542231203215/9862852588
+        mInterstitial.setAdUnitId("ca-app-pub-6641542231203215/9862852588");
+        AdRequest request = new AdRequest.Builder().build();
+        mInterstitial.loadAd(request);
+        mInterstitial.setAdListener(new AdListener()
+                                    {
+                                        @Override
+                                        public void onAdClosed(){
+                                            ilv.putExtra("livello", lv + 1);
+                                            startActivity(ilv);
+                                        }
+                                    }
+        );
+
         count =0;
         int i=0, z=0;
         long tInt=10, tBase=3000;
@@ -183,7 +210,7 @@ public class firstActivity extends AppCompatActivity {
             }
         }
 
-        final Intent ilv=new Intent(firstActivity.this, InterLvActivity.class);
+        ilv=new Intent(firstActivity.this, InterLvActivity.class);
 
         for(i=0; i<nt; i++){
             final int k=i;
@@ -279,9 +306,14 @@ public class firstActivity extends AppCompatActivity {
                             }
                             else{/*se devo continuare con altri livelli*/
                                 timer.cancel();
-                                ilv.putExtra("livello", lv+1);
-                                startActivity(ilv);
-
+                                if(mInterstitial.isLoaded()){
+                                    //test
+                                    //endtest
+                                    mInterstitial.show();
+                                }else {
+                                    ilv.putExtra("livello", lv + 1);
+                                    startActivity(ilv);
+                                }
                             }
 
                         }

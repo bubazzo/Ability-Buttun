@@ -56,10 +56,10 @@ public class VictoryActivity extends AppCompatActivity {
             lvStamp=lvR;
             testoLv.setText("lv: "+ lvStamp.toString());
             if(ris==0){
-                testoMotivo.setText("Tempo scaduto");
+                testoMotivo.setText("Time out");
             }
             else{
-                testoMotivo.setText("Premuto bottone sbagliato");
+                testoMotivo.setText("Pressed wrong button");
             }
         }
 
@@ -67,7 +67,8 @@ public class VictoryActivity extends AppCompatActivity {
         restart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(VictoryActivity.this, CheckpointActivity.class);
+                Intent i=new Intent(VictoryActivity.this, RegoleActivity.class);
+                i.putExtra("livello", 0);
                 startActivity(i);
             }
         });
@@ -90,7 +91,7 @@ public class VictoryActivity extends AppCompatActivity {
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setMessage("Tornare al menù principale?");
+        builder.setMessage("Return to Main Menù?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
